@@ -1,0 +1,29 @@
+create database SQLProject1
+-- Replace '' empty strings with NULL in 'continent_code' and 'country_code' tables of 'SQLProject1' database
+SET SQL_SAFE_UPDATES =0;
+UPDATE continent_map
+SET continent_code=NULL 
+WHERE continent_code='';
+
+UPDATE continent_map
+SET country_code=NULL 
+WHERE country_code='';
+
+SET SQL_SAFE_UPDATES =1;
+
+-- Arrange 'country_code' names in Ascending order with 'FOO' on top of list
+-- Use COALESCE to change all NULL values in country_code table into string "FOO"
+-- Use GROUP BY to group all country_code values that occur once or more than once using HAVING COUNT(*)>=1
+-- Use ORDER BY to execute the country_code table in ascending order
+SELECT 
+    COALESCE(country_code,"FOO") AS CountryCode
+FROM
+    continent_map
+GROUP BY country_code
+HAVING COUNT(*) >= 1
+ORDER BY country_code;
+
+
+
+    
+
